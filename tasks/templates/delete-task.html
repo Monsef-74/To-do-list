@@ -1,0 +1,64 @@
+<h1>Delete Task</h1>
+<p>Are you sure that you want to delete this task? - <strong>{{ task }}</strong></p>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <input class="btn" type="submit" value="Confirm deletion">
+</form>
+
+<a href="{% url '' %}" class="cancel-link">Cancel</a>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4ff;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #003366; 
+        margin-bottom: 20px;
+    }
+
+    p {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 1.1em; 
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        background-color: #d9534f; 
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #c9302c;
+    }
+
+    .cancel-link {
+        display: block; 
+        text-align: center;
+        margin-top: 10px; 
+        color: #003366;
+        text-decoration: none;
+    }
+
+    .cancel-link:hover {
+        text-decoration: underline; 
+        color: #002244; 
+    }
+</style>

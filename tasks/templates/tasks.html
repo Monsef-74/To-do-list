@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366; 
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .logout-btn form {
+            display: inline;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        form input[type="text"] {
+            padding: 10px;
+            border: 2px solid #003366;
+            border-radius: 5px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        .btn {
+            background-color: #003366; 
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #002244; 
+        }
+
+        .task-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-name {
+            font-size: 1.2em; 
+            font-weight: bold; 
+        }
+
+        .task-details {
+            font-size: 0.9em; 
+            color: #555; 
+        }
+
+        .task-links {
+            margin-left: 10px;
+        }
+
+        .task-links a {
+            color: #003366;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .task-links a:hover {
+            text-decoration: underline;
+            color: #002244; 
+        }
+    </style>
+</head>
+<body>
+
+<h1>Tasks:</h1>
+
+<div class="logout-btn">
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <input class="btn" type="submit" value="Log Out">
+    </form>
+</div>
+
+<form method="post" action="/">
+    {% csrf_token %}
+    {{ TaskForm.title }}
+    <input class="btn" type="submit" value="Create a new task">
+</form>
+
+{% for task in tasks %}
+    <div class="task-item">
+        <span class="task-name">{{ task.title }}</span>
+        <span class="task-details"><b>{{ task.completed }}</b>, created at {{ task.created }}</span>
+        <div class="task-links">
+            <a href="{% url 'update-task' task.id %}">Update</a>
+            <a href="{% url 'delete-task' task.id %}">Delete</a>
+        </div>
+    </div>
+{% endfor %}
+
+</body>
+</html>

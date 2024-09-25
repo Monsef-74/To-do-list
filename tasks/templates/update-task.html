@@ -1,0 +1,53 @@
+<h1>Update Task</h1>
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{ TaskForm }}
+    <input class="btn" type="submit" value="Update task" style="margin-top: 20px;"> 
+</form>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4ff; 
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #003366; 
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        margin-bottom: 20px;
+    }
+
+    form input[type="text"],
+    form textarea { 
+        padding: 10px;
+        border: 2px solid #003366;
+        border-radius: 5px;
+        width: 300px;
+        margin-bottom: 30px; 
+    }
+
+    .btn {
+        background-color: #003366;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #002244;
+    }
+</style>
